@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Управление отелем</title>
+</head>
+<body>
+    <h1>Добавить гостя</h1>
+    <form action="/cgi-bin/server.py" method="post">
+        <input type="hidden" name="action" value="add_guest">
+        <label for="first_name">Имя:</label><br>
+        <input type="text" id="first_name" name="first_name" required><br>
+        <label for="last_name">Фамилия:</label><br>
+        <input type="text" id="last_name" name="last_name" required><br>
+        <label for="phone_number">Телефон:</label><br>
+        <input type="text" id="phone_number" name="phone_number"><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br>
+        <label for="passport_number">Номер паспорта:</label><br>
+        <input type="text" id="passport_number" name="passport_number" required><br><br>
+        <button type="submit">Добавить</button>
+    </form>
+
+    <h1>Просмотреть номера</h1>
+    <form action="/cgi-bin/server.py" method="post">
+        <input type="hidden" name="action" value="view_rooms">
+        <button type="submit">Показать</button>
+    </form>
+</body>
+</html>

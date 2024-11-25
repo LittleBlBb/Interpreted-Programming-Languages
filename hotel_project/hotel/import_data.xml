@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<hotel>
+  <guests>
+    <guest id="1">
+      <first_name>Sanya</first_name>
+      <last_name>Snichkov</last_name>
+    </guest>
+  </guests>
+  <rooms>
+    <room id="1">
+      <room_number>101</room_number>
+      <room_type>Люкс</room_type>
+    </room>
+  </rooms>
+  <bookings/>
+</hotel>
