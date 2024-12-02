@@ -1,7 +1,0 @@
-<h2>Список номеров</h2>
-<ul>
-    {% for room in rooms %}
-        <li>Номер: {{ room.room_number }}, Тип: {{ room.room_type }}, Цена: {{ room.price_per_night }}, Статус: {{ room.status }}</li>
-    {% endfor %}
-</ul>
-<a href="{% url 'home' %}">Назад</a>

@@ -1,7 +1,0 @@
-<h2>Список гостей</h2>
-<ul>
-    {% for guest in guests %}
-        <li>Имя: {{ guest.first_name }}, Фамилия: {{ guest.last_name }}, Телефон: {{ guest.phone_number }}, Почта: {{ guest.email }}, Номер паспорта: {{ guest.passport_number }} </li>
-    {% endfor %}
-</ul>
-<a href="{% url 'home' %}">Назад</a>
