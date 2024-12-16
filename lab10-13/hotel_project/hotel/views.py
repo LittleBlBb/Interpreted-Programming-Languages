@@ -1,4 +1,4 @@
-from mimetypes import guess_type
+from turtledemo.penrose import start
 
 from django.http import JsonResponse
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
@@ -134,6 +134,7 @@ def import_from_xml(request):
     # Обработка GET-запроса (возврат страницы с формой загрузки)
     if request.method == "GET":
         return render(request, "import_form.html")
+
 def home(request):
     return render(request, 'home.html')
 
@@ -172,6 +173,38 @@ def edit_guest(request, guest_id):
         guest.passport = request.POST.get("passport_number", guest.passport_number)
         guest.save()
     return redirect("view_guests")
+
+def view_bookings(request):
+    bookings = Booking.objects.all()
+    return render(request, 'view_bookings.html', {'bookings': bookings})
+
+def add_booking(request):
+    if request.method == 'POST':
+        guest = get_object_or_404(Guest, id=request.POST.get('guest_id'))
+        room = get_object_or_404(Room, id=request.POST.get('room_id'))
+        check_in_date = request.POST.get('check_in_date')
+        check_out_date = request.POST.get('check_out_date')
+        Booking.objects.create(
+            guest=guest, room=room,
+            check_in_date=check_in_date, check_out_date=check_out_date
+        )
+        return redirect('view_bookings')
+    guests = Guest.objects.all()
+    rooms = Room.objects.all()
+    return render(request, 'add_booking.html', {'guests': guests, 'rooms': rooms})
+
+def edit_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id)
+    if request.method == 'POST':
+        booking.guest = get_object_or_404(Guest, id=request.POST.get('guest_id'))
+        booking.room = get_object_or_404(Room, id=request.POST.get('room_id'))
+        booking.check_in_date = request.POST.get('check_in_date')
+        booking.check_out_date = request.POST.get('check_out_date')
+        booking.save()
+        return redirect('view_bookings')
+    guests = Guest.objects.all()
+    rooms = Room.objects.all()
+    return render(request, 'edit_booking.html', {'booking': booking, 'guests': guests, 'rooms': rooms})
 
 def add_room(request):
     if request.method == 'POST':
